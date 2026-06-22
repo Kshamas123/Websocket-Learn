@@ -1,0 +1,18 @@
+What is HTTP?
+A request-response protocol — client always initiates, server only replies
+After every response, the connection closes
+HTTP/1.0 → 1 request = 1 connection (pure close after response)
+HTTP/1.1 → Keep-Alive lets connection linger briefly for reuse, but still request-response
+Server can never push data on its own — it waits to be asked
+
+The problem with HTTP for real-time
+You only see updated data (likes, messages, scores) when you refresh or revisit — because a new request is the only trigger
+Polling (asking every few seconds) wastes millions of requests — most return empty
+Long polling is smarter but still hacky — connection is reopened constantly
+
+What is WebSocket?
+A persistent, full-duplex connection — opened once, stays open
+Both client and server can send messages at any time — no asking needed
+Event-driven: something changes → the other side is notified instantly
+No repeated HTTP headers — very low overhead per message
+
